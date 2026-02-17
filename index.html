@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Διαχείριση Χρηστών (CRUD)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-users-gear"></i> Διαχείριση Χρηστών</h1>
+            <p>Σύστημα εγγραφής και διαχείρισης με Live Validation</p>
+        </header>
+
+        <main class="app-layout">
+            
+            <section class="form-section">
+                <h2><i class="fa-solid fa-user-plus"></i> Εγγραφή / Επεξεργασία</h2>
+                <form id="userForm">
+                    <input type="hidden" id="editIndex" value="-1">
+
+                    <div class="input-group">
+                        <label for="firstName">Όνομα</label>
+                        <input type="text" id="firstName" placeholder="π.χ. ΓΕΩΡΓΙΟΣ" required>
+                        <small class="msg">Μήνυμα εγκυρότητας</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="lastName">Επώνυμο</label>
+                        <input type="text" id="lastName" placeholder="π.χ. ΠΑΠΑΔΟΠΟΥΛΟΣ" required>
+                        <small class="msg">Μήνυμα εγκυρότητας</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="user@example.com" required>
+                        <small class="msg">Μήνυμα εγκυρότητας</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="role">Ρόλος</label>
+                        <select id="role" required>
+                            <option value="" disabled selected>Επιλέξτε ρόλο</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                        <small class="msg">Επιλέξτε έναν ρόλο</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regDate">Ημερομηνία Εγγραφής</label>
+                        <input type="date" id="regDate" required>
+                        <small class="msg">Επιλέξτε ημερομηνία</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="submitBtn" class="btn btn-primary">
+                            <i class="fa-solid fa-floppy-disk"></i> Αποθήκευση
+                        </button>
+                        <button type="button" id="cancelBtn" class="btn btn-secondary hidden">
+                            <i class="fa-solid fa-ban"></i> Ακύρωση
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="table-section">
+                <div class="table-header">
+                    <h2><i class="fa-solid fa-list"></i> Λίστα Χρηστών</h2>
+                    <span id="totalUsers" class="badge">Σύνολο: 0</span>
+                </div>
+                
+                <div class="table-responsive">
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable('firstName')">Όνομα <i class="fa-solid fa-sort"></i></th>
+                                <th onclick="sortTable('email')">Email <i class="fa-solid fa-sort"></i></th>
+                                <th>Ρόλος</th>
+                                <th onclick="sortTable('regDate')">Ημερομηνία <i class="fa-solid fa-sort"></i></th>
+                                <th>Ενέργειες</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                    <div id="emptyState" class="empty-state">
+                        <i class="fa-regular fa-folder-open"></i>
+                        <p>Δεν υπάρχουν χρήστες. Προσθέστε έναν!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="logic.js"></script>
+</body>
+</html>
